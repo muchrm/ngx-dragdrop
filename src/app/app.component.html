@@ -8,8 +8,8 @@
   <tbody>
     <tr *ngFor="let day of days">
       <td >{{day}}</td>
-      <th  *ngFor="let time of times" [dragula]='getDragulaTag(day,time)' [id]="getDragulaTag(day,time)">
-        <div *ngFor="let item of getItemInTag(getDragulaTag(day,time))" [id]="item">{{item}}</div>
+      <th  valign="top" *ngFor="let time of times" [ngxDropable]="getDropableTag(day,time)" (dropped)="onDrop($event)">
+        <div *ngFor="let item of getItemInTag(getDropableTag(day,time))" [ngxDragable]="item" >{{item.data||0}}</div>
       </th>
     </tr>
   </tbody>

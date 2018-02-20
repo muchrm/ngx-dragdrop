@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-root',
@@ -12,39 +11,82 @@ export class AppComponent {
   list = [];
   dragulaTags = {
     'Monday_8': [
-      'A', 'B'
+      { size: 1, data: 'A' },
+      { size: 2, data: 'B' },
+      { size: 4, data: 'C' }
     ]
   };
-  constructor(private dragulaService: DragulaService) {
-    dragulaService.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-    });
-    dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
-      this.onDrop(value.slice(1));
-    });
-    dragulaService.over.subscribe((value) => {
-      console.log(`over: ${value[0]}`);
-    });
-    dragulaService.out.subscribe((value) => {
-      console.log(`out: ${value[0]}`);
-    });
+  courseInTag = [];
+
+  constructor() {
+    this.updateCourseInTag();
   }
   getHeaderTime(time: string) {
     return `${time}:00 - ${+time + 1}:00`;
   }
 
-  getDragulaTag(day, time) {
+  getDropableTag(day, time) {
     return `${day}_${time}`;
   }
 
   getItemInTag(tag) {
-    return this.dragulaTags[tag] || [];
+    return this.courseInTag[tag] || [];
   }
-  private onDrop(args) {
-    const [chield, parent] = args;
-    this.dragulaTags[parent.id] = this.dragulaTags[parent.id] || [];
-    this.dragulaTags[parent.id].push(chield.id);
-    console.log(this.dragulaTags);
+
+  onDrop(event) {
+    this.dragulaTags[event.newParent] = this.dragulaTags[event.newParent] || [];
+    this.dragulaTags[event.newParent].push(event.child);
+
+    const index = this.dragulaTags[event.oldParent].findIndex(el => el['data'] === event.child.data);
+    if (index > -1) {
+      this.dragulaTags[event.oldParent].splice(index, 1);
+    }
+    this.updateCourseInTag();
+  }
+
+  private findWithAttr(array, attr, value) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (array[i][attr] === value) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  updateCourseInTag() {
+    this.courseInTag = [];
+    Object.keys(this.dragulaTags).forEach(key => {
+      this.dragulaTags[key].sort((a, b) => a.size < b.size);
+      this.dragulaTags[key].forEach(course => {
+        const [day, time] = key.split('_');
+        const timeStart = +time;
+        const maxSize = this.getMaxSizeInTag(day, timeStart, course.size, course.data);
+        for (let i = timeStart; i < timeStart + course.size; i++) {
+          const tag = this.getDropableTag(day, i);
+          const dragAble = i === timeStart;
+          this.courseInTag[tag] = this.courseInTag[tag] || [];
+          while (this.courseInTag[tag].length < maxSize) {
+            this.courseInTag[tag].push({ dragAble: false, size: 0, data: undefined });
+          }
+          this.courseInTag[tag].push({ dragAble, size: course.size, data: course.data });
+        }
+      });
+    });
+  }
+  private getMaxSizeInTag(day, timeStart, size, data) {
+    let max = 0;
+    for (let i = timeStart; i < timeStart + size; i++) {
+      const tag = this.getDropableTag(day, i);
+      if (this.courseInTag[tag]) {
+        this.courseInTag[tag].push({ dragAble: false, size: 0, data: data });
+
+        const index = this.courseInTag[tag].findIndex(el => {
+          return el['data'] === data;
+        });
+        this.courseInTag[tag].pop();
+
+        max = (index > max ? index : max);
+      }
+    }
+    return max;
   }
 }
