@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import { DragulaModule } from 'ng2-dragula';
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 
 
@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragulaModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
