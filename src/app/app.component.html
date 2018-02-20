@@ -8,8 +8,8 @@
   <tbody>
     <tr *ngFor="let day of days">
       <td >{{day}}</td>
-      <th *ngFor="let time of times" [dragula]='getDragulaTag(day,time)'>
-        <div *ngFor="let item of getItemInTag(getDragulaTag(day,time))">{{item}}</div>
+      <th  *ngFor="let time of times" [dragula]='getDragulaTag(day,time)' [id]="getDragulaTag(day,time)">
+        <div *ngFor="let item of getItemInTag(getDragulaTag(day,time))" [id]="item">{{item}}</div>
       </th>
     </tr>
   </tbody>

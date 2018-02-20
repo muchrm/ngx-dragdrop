@@ -14,7 +14,7 @@ export class AppComponent {
     'Monday_8': [
       'A', 'B'
     ]
-  }
+  };
   constructor(private dragulaService: DragulaService) {
     dragulaService.drag.subscribe((value) => {
       console.log(`drag: ${value[0]}`);
@@ -31,18 +31,20 @@ export class AppComponent {
     });
   }
   getHeaderTime(time: string) {
-    return `${time}:00 - ${+time + 1}:00`
+    return `${time}:00 - ${+time + 1}:00`;
   }
 
   getDragulaTag(day, time) {
-    return `${day}_${time}`
+    return `${day}_${time}`;
   }
 
   getItemInTag(tag) {
-    return this.dragulaTags[tag];
+    return this.dragulaTags[tag] || [];
   }
   private onDrop(args) {
-    let [e, el] = args;
-    console.log(e);
+    const [chield, parent] = args;
+    this.dragulaTags[parent.id] = this.dragulaTags[parent.id] || [];
+    this.dragulaTags[parent.id].push(chield.id);
+    console.log(this.dragulaTags);
   }
 }
