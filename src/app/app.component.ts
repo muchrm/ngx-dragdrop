@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   times = ['8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  list = [];
   dragulaTags = {
     'Monday_8': [
       { size: 1, data: 'A' },
@@ -60,17 +59,24 @@ export class AppComponent {
         const [day, time] = key.split('_');
         const timeStart = +time;
         const maxSize = this.getMaxSizeInTag(day, timeStart, course.size, course.data);
-        for (let i = timeStart; i < timeStart + course.size; i++) {
-          const tag = this.getDropableTag(day, i);
-          const dragAble = i === timeStart;
-          this.courseInTag[tag] = this.courseInTag[tag] || [];
-          while (this.courseInTag[tag].length < maxSize) {
-            this.courseInTag[tag].push({ dragAble: false, size: 0, data: undefined });
-          }
-          this.courseInTag[tag].push({ dragAble, size: course.size, data: course.data });
-        }
+        this.addCourseBySize(day, timeStart, course.size, course.data, maxSize);
       });
     });
+  }
+
+  private addCourseBySize(day, timeStart, size, data, maxSize) {
+    for (let i = timeStart; i < timeStart + size; i++) {
+      const tag = this.getDropableTag(day, i);
+      const dragAble = i === timeStart;
+      this.addEmptyCourseByMaxSize(tag, maxSize);
+      this.courseInTag[tag].push({ dragAble, size: size, data: data });
+    }
+  }
+  private addEmptyCourseByMaxSize(tag, maxSize) {
+      this.courseInTag[tag] = this.courseInTag[tag] || [];
+      while (this.courseInTag[tag].length < maxSize) {
+        this.courseInTag[tag].push({ dragAble: false, size: 0, data: undefined });
+      }
   }
   private getMaxSizeInTag(day, timeStart, size, data) {
     let max = 0;
@@ -78,12 +84,8 @@ export class AppComponent {
       const tag = this.getDropableTag(day, i);
       if (this.courseInTag[tag]) {
         this.courseInTag[tag].push({ dragAble: false, size: 0, data: data });
-
-        const index = this.courseInTag[tag].findIndex(el => {
-          return el['data'] === data;
-        });
+        const index = this.courseInTag[tag].findIndex(el => el['data'] === data);
         this.courseInTag[tag].pop();
-
         max = (index > max ? index : max);
       }
     }
