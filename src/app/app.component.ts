@@ -19,13 +19,29 @@ export class AppComponent {
     'mediumslateblue', 'royalblue', 'bisque', 'navajowhite', 'wheat', 'burlywood', 'tan', 'rosybrown', 'sandybrown',
     'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
   dragulaTags = {
-    'Monday_8': [
-      { size: 1, data: 'Sport', color: '' },
-      { size: 2, data: 'English', color: '' },
-      { size: 4, data: 'Math', color: '' },
-      { size: 3, data: 'Society', color: '' },
-      { size: 5, data: 'Science', color: '' }
-    ]
+    'Monday_10': [
+      { size: 2, data: '88510459', color: '' },
+    ],
+    'Monday_13': [
+      { size: 2, data: '88510459', color: '' },
+    ],
+    'Tuesday_10':[
+      { size: 2, data: '88621159#1', color: '' },
+      { size: 2, data: '88621159#2', color: '' },
+    ],
+    'Tuesday_13': [
+      { size: 2, data: '88621159#1', color: '' },
+      { size: 2, data: '88621159#2', color: '' },
+    ],
+    'Wednesday_8': [
+      { size: 2, data: '88510059', color: '' }
+    ],
+    'Wednesday_14': [
+      { size: 2, data: '88621159#1', color: '' },
+      { size: 2, data: '88621159#2', color: '' },
+      { size: 2, data: '88621159#3', color: '' },
+      { size: 2, data: '88621159#4', color: '' }
+    ],
   };
   courseInTag = [];
 
@@ -113,6 +129,14 @@ export class AppComponent {
         max = (index > max ? index : max);
       }
     }
+    return max;
+  }
+  getMaxSizeDay(day){
+    let max = 0;
+    this.times.forEach(time => {
+      const tag = this.getDropableTag(day, time);
+      max = this.dragulaTags[tag].length>max?this.dragulaTags[tag].length:max
+    });
     return max;
   }
 }
