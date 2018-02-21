@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { COLORS } from './ngx-dragdrop/colors'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,16 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   times = ['8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  colors = ['indianred', 'lightcoral', 'salmon', 'darksalmon', 'lightsalmon', 'crimson', 'red', 'pink', 'lightpink',
-    'hotpink', 'deeppink', 'mediumvioletred', 'palevioletred', 'lightsalmon', 'coral', 'tomato', 'orangered', 'darkorange', 'orange',
-    'gold', 'yellow', 'papayawhip', 'moccasin', 'peachpuff', 'palegoldenrod', 'khaki', 'darkkhaki', 'thistle', 'plum', 'violet',
-    'orchid', 'fuchsia', 'magenta', 'mediumorchid', 'mediumpurple', 'blueviolet', 'darkviolet', 'darkorchid', 'slateblue', 'greenyellow',
-    'chartreuse', 'lawngreen', 'lime', 'limegreen', 'palegreen', 'lightgreen', 'mediumspringgreen', 'springgreen', 'mediumseagreen',
-    'seagreen', 'forestgreen', 'green', 'yellowgreen', 'olivedrab', 'olive', 'mediumaquamarine', 'darkseagreen', 'lightseagreen',
-    'aqua', 'cyan', 'paleturquoise', 'aquamarine', 'turquoise', 'mediumturquoise', 'darkturquoise', 'cadetblue', 'steelblue',
-    'lightsteelblue', 'powderblue', 'lightblue', 'skyblue', 'lightskyblue', 'deepskyblue', 'dodgerblue', 'cornflowerblue',
-    'mediumslateblue', 'royalblue', 'bisque', 'navajowhite', 'wheat', 'burlywood', 'tan', 'rosybrown', 'sandybrown',
-    'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
+  colors = COLORS;
   dragulaTags = {
     'Monday_10': [
       { size: 2, data: '88510459#1'},
