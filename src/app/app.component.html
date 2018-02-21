@@ -1,5 +1,5 @@
-<table>
-  <thead >
+<table class="noselect">
+  <thead>
     <tr>
       <th>Days/Times</th>
       <th *ngFor="let time of times">{{getHeaderTime(time)}}</th>
@@ -7,9 +7,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let day of days">
-      <td >{{day}}</td>
-      <th  valign="top" *ngFor="let time of times" [ngxDropable]="getDropableTag(day,time)" (dropped)="onDrop($event)">
-        <div *ngFor="let item of getItemInTag(getDropableTag(day,time))" [ngxDragable]="item" >{{item.data||0}}</div>
+      <td>{{day}}</td>
+      <th valign="top" *ngFor="let time of times" [ngxDropable]="getDropableTag(day,time)" (dropped)="onDrop($event)">
+        <div class="item pointer" *ngFor="let item of getItemInTag(getDropableTag(day,time))" [ngxDragable]="item" [ngStyle]="getStyle(item.dragAble)">{{item.data||0}}</div>
       </th>
     </tr>
   </tbody>
