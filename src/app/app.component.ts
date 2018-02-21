@@ -90,6 +90,7 @@ export class AppComponent {
     return -1;
   }
   updateCourseInTag() {
+    this.courseInTag['Subjects'] = this.dragulaTags['Subjects'];
     this.courseInTag = [];
     Object.keys(this.dragulaTags).forEach(key => {
       this.dragulaTags[key].sort((a, b) => a.size < b.size);
