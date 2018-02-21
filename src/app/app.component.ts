@@ -18,34 +18,23 @@ export class AppComponent {
     'lightsteelblue', 'powderblue', 'lightblue', 'skyblue', 'lightskyblue', 'deepskyblue', 'dodgerblue', 'cornflowerblue',
     'mediumslateblue', 'royalblue', 'bisque', 'navajowhite', 'wheat', 'burlywood', 'tan', 'rosybrown', 'sandybrown',
     'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
-  col = [];
   dragulaTags = {
     'Monday_8': [
-      { size: 1, data: 'Sport', color: '' },
-      { size: 2, data: 'English', color: '' },
-      { size: 4, data: 'Math', color: '' },
-      { size: 3, data: 'Society', color: '' },
-      { size: 5, data: 'Science', color: '' }
+      { size: 1, data: 'Sport'},
+      { size: 2, data: 'English'},
+      { size: 4, data: 'Math'},
+      { size: 3, data: 'Society'},
+      { size: 5, data: 'Science'}
     ]
   };
   courseInTag = [];
 
   constructor() {
-    for (let i = 0; i <= 5; i++) {
-      this.col.push(this.colors[Math.floor((Math.random() * 90) + 1)]);
-      if (i === 5) {
-        this.dragulaTags = {
-          'Monday_8': [
-            { size: 1, data: 'Sport', color: this.col[1] },
-            { size: 2, data: 'English', color: this.col[2] },
-            { size: 4, data: 'Math', color: this.col[3] },
-            { size: 3, data: 'Society', color: this.col[4] },
-            { size: 5, data: 'Science', color: this.col[5] }
-          ]
-        };
-      }
-    }
-    console.log(this.dragulaTags);
+    Object.keys(this.dragulaTags).forEach(key => {
+      this.dragulaTags[key].forEach(course => {
+        course.color = this.colors[Math.floor((Math.random() * 90) + 1)]
+      });
+    });
     this.updateCourseInTag();
   }
 
