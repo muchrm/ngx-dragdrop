@@ -33,6 +33,12 @@ export class AppComponent {
       { size: 2, data: { id: 10, courseCode: 885101, section: 3 } },
       { size: 3, data: { id: 11, courseCode: 885101, section: 3 } }
     ],
+    'Subjects': [
+      { size: 2, data: { id: 12, courseCode: 885101, section: 3 } },
+      { size: 5, data: { id: 13, courseCode: 885101, section: 3 } },
+      { size: 6, data: { id: 14, courseCode: 885101, section: 3 } },
+      { size: 4, data: { id: 15, courseCode: 885101, section: 3 } }
+    ],
   };
   courseInTag = [];
 
@@ -62,10 +68,6 @@ export class AppComponent {
       'overflow': dragAble ? '' : 'hidden',
       'cursor': dragAble ? 'pointer' : 'no-drop'
     };
-  }
-
-  getWidth(size) {
-    return;
   }
 
   onDrop(event) {

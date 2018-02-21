@@ -15,8 +15,8 @@
   </tbody>
 </table>
 <p class="noselect">Subjects</p>
-<div class="scroll-list pointer" valign="top" [ngxDropable]="getDropableTag('free',0)" (dropped)="onDrop($event)">
-  <div class="item1" *ngFor="let item of getItemInTag(getDropableTag('free',0))" [ngxDragable]="item" [ngStyle]="getWidth(item.size)">
-      {{getCourseCode(item.data)}}
+<div class="scroll-list pointer" valign="top" [ngxDropable]="getDropableTag('Subjects',0)" (dropped)="onDrop($event)">
+  <div class="item1" *ngFor="let item of getItemInTag(getDropableTag('Subjects',0))" [ngxDragable]="item">
+      {{getCourseCode(item.data)}} ( {{item.size}} )
   </div>
 </div>
