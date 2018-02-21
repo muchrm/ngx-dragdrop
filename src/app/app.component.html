@@ -9,8 +9,14 @@
     <tr *ngFor="let day of days">
       <td>{{day}}</td>
       <th valign="top" *ngFor="let time of times" [ngxDropable]="getDropableTag(day,time)" (dropped)="onDrop($event)">
-        <div class="item pointer" *ngFor="let item of getItemInTag(getDropableTag(day,time))" [ngxDragable]="item" [ngStyle]="getStyle(item.dragAble)">{{item.data||0}}</div>
+        <div class="item" *ngFor="let item of getItemInTag(getDropableTag(day,time))" [ngxDragable]="item" [ngStyle]="getStyle(item.dragAble)">{{getCourseCode(item.data)}}</div>
       </th>
     </tr>
   </tbody>
 </table>
+<p class="noselect">Subjects</p>
+<div class="scroll-list pointer" valign="top" [ngxDropable]="getDropableTag('free',0)" (dropped)="onDrop($event)">
+  <div class="item1" *ngFor="let item of getItemInTag(getDropableTag('free',0))" [ngxDragable]="item" [ngStyle]="getWidth(item.size)">
+      {{getCourseCode(item.data)}}
+  </div>
+</div>

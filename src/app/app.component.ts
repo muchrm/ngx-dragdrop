@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { COLORS } from './ngx-dragdrop/colors'
+import { COLORS } from './ngx-dragdrop/colors';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,27 +11,27 @@ export class AppComponent {
   colors = COLORS;
   dragulaTags = {
     'Monday_10': [
-      { size: 2, data: '88510459#1'},
+      { size: 2, data: { id: 1, courseCode: 885101, section: 3 } },
     ],
     'Monday_13': [
-      { size: 2, data: '88510459#2'},
+      { size: 2, data: { id: 2, courseCode: 885101, section: 3 } },
     ],
-    'Tuesday_10':[
-      { size: 2, data: '88621159#3'},
-      { size: 2, data: '88621159#4'},
+    'Tuesday_10': [
+      { size: 2, data: { id: 3, courseCode: 885101, section: 3 } },
+      { size: 3, data: { id: 4, courseCode: 885101, section: 3 } },
     ],
     'Tuesday_13': [
-      { size: 2, data: '88621159#5'},
-      { size: 2, data: '88621159#6'},
+      { size: 2, data: { id: 5, courseCode: 885101, section: 3 } },
+      { size: 2, data: { id: 6, courseCode: 885101, section: 3 } },
     ],
     'Wednesday_8': [
-      { size: 2, data: '88510059#7'}
+      { size: 5, data: { id: 7, courseCode: 885101, section: 3 } }
     ],
     'Wednesday_14': [
-      { size: 2, data: '88621159#8'},
-      { size: 2, data: '88621159#9'},
-      { size: 2, data: '88621159#10'},
-      { size: 2, data: '88621159#11'}
+      { size: 2, data: { id: 8, courseCode: 885101, section: 3 } },
+      { size: 1, data: { id: 9, courseCode: 885101, section: 3 } },
+      { size: 2, data: { id: 10, courseCode: 885101, section: 3 } },
+      { size: 3, data: { id: 11, courseCode: 885101, section: 3 } }
     ],
   };
   courseInTag = [];
@@ -39,7 +39,7 @@ export class AppComponent {
   constructor() {
     Object.keys(this.dragulaTags).forEach(key => {
       this.dragulaTags[key].forEach(course => {
-        course.color = this.colors[Math.floor((Math.random() * 90) + 1)]
+        course.color = this.colors[Math.floor((Math.random() * 90) + 1)];
       });
     });
     this.updateCourseInTag();
@@ -59,16 +59,20 @@ export class AppComponent {
 
   getStyle(dragAble) {
     return {
-      'background-color': dragAble ? '#FF0000' : '#FFFFFF',
+      'overflow': dragAble ? '' : 'hidden',
       'cursor': dragAble ? 'pointer' : 'no-drop'
     };
+  }
+
+  getWidth(size) {
+    return;
   }
 
   onDrop(event) {
     this.dragulaTags[event.newParent] = this.dragulaTags[event.newParent] || [];
     this.dragulaTags[event.newParent].push(event.child);
 
-    const index = this.dragulaTags[event.oldParent].findIndex(el => el['data'] === event.child.data);
+    const index = this.dragulaTags[event.oldParent].findIndex(el => el.data !== undefined && el.data.id === event.child.data.id);
     if (index > -1) {
       this.dragulaTags[event.oldParent].splice(index, 1);
     }
@@ -116,11 +120,14 @@ export class AppComponent {
       const tag = this.getDropableTag(day, i);
       if (this.courseInTag[tag]) {
         this.courseInTag[tag].push({ dragAble: false, size: 0, data: data });
-        const index = this.courseInTag[tag].findIndex(el => el['data'] === data);
+        const index = this.courseInTag[tag].findIndex(el => el.data !== undefined && el.data.id === data.id);
         this.courseInTag[tag].pop();
         max = (index > max ? index : max);
       }
     }
     return max;
+  }
+  public getCourseCode(course) {
+    return course ? course.courseCode : 0;
   }
 }

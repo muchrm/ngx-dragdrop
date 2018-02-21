@@ -19,7 +19,6 @@ export class NgxDragableDirective implements OnInit {
     } else {
       this.el.classList.add('ngx-nulable');
     }
-    console.log(this.ngxDragable);
     this.el.style.background = this.ngxDragable.color;
 
   }

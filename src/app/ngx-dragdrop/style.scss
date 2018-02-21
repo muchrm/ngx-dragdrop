@@ -10,10 +10,11 @@
   background-color:#555555
 }
 .ngx-dropable{
-  border-style: dotted;
-  border-width: 1px;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 .ngx-nulable{
   opacity: 0;
 }
-.no-drop {cursor: no-drop;}
+

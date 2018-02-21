@@ -9,12 +9,13 @@
   }
 th {
     font-size: 13px;
-    width: 100px;
-    height: 50px;
+    min-width: 90px;
+    max-width: 90px;
+    height: 40px;
     border-radius: 4px;
 }
 thead {
-    background-color:DarkBlue; 
+    background-color:rgb(8, 49, 77); 
     color:GhostWhite;
 }
 td {
@@ -33,4 +34,33 @@ td {
     visibility: inherit;  
     margin: 5px auto 5px; 
     padding: 8px;
+    text-align: center;
+}
+.item1 {
+    display: block;
+    border-radius: 6px;
+    font-weight: bold;
+    transform: translate3d(0px, 0px, 0px); 
+    transition: background-color 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px 0px, rgba(0, 0, 0, 0.6) 0px 1px 2px 0px;  
+    visibility: inherit;  
+    margin: 5px auto 5px; 
+    padding: 8px;
+    text-align: center;
+    font-size:14px;
+}
+p {
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+.scroll-list {
+    width: 200px;
+    height: 300px;
+    overflow: auto;
+    margin: 5px auto 5px; 
+    border-radius: 6px;
+  }
+.pointer {
+    cursor: pointer;
 }
