@@ -20,27 +20,27 @@ export class AppComponent {
     'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
   dragulaTags = {
     'Monday_10': [
-      { size: 2, data: '88510459', color: '' },
+      { size: 2, data: '88510459'},
     ],
     'Monday_13': [
-      { size: 2, data: '88510459', color: '' },
+      { size: 2, data: '88510459'},
     ],
     'Tuesday_10':[
-      { size: 2, data: '88621159#1', color: '' },
-      { size: 2, data: '88621159#2', color: '' },
+      { size: 2, data: '88621159#1'},
+      { size: 2, data: '88621159#2'},
     ],
     'Tuesday_13': [
-      { size: 2, data: '88621159#1', color: '' },
-      { size: 2, data: '88621159#2', color: '' },
+      { size: 2, data: '88621159#1'},
+      { size: 2, data: '88621159#2'},
     ],
     'Wednesday_8': [
-      { size: 2, data: '88510059', color: '' }
+      { size: 2, data: '88510059'}
     ],
     'Wednesday_14': [
-      { size: 2, data: '88621159#1', color: '' },
-      { size: 2, data: '88621159#2', color: '' },
-      { size: 2, data: '88621159#3', color: '' },
-      { size: 2, data: '88621159#4', color: '' }
+      { size: 2, data: '88621159#1'},
+      { size: 2, data: '88621159#2'},
+      { size: 2, data: '88621159#3'},
+      { size: 2, data: '88621159#4'}
     ],
   };
   courseInTag = [];
