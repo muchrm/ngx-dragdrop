@@ -132,12 +132,4 @@ export class AppComponent {
     }
     return max;
   }
-  getMaxSizeDay(day){
-    let max = 0;
-    this.times.forEach(time => {
-      const tag = this.getDropableTag(day, time);
-      max = this.dragulaTags[tag].length>max?this.dragulaTags[tag].length:max
-    });
-    return max;
-  }
 }
