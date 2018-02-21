@@ -18,6 +18,7 @@ export class AppComponent {
     'lightsteelblue', 'powderblue', 'lightblue', 'skyblue', 'lightskyblue', 'deepskyblue', 'dodgerblue', 'cornflowerblue',
     'mediumslateblue', 'royalblue', 'bisque', 'navajowhite', 'wheat', 'burlywood', 'tan', 'rosybrown', 'sandybrown',
     'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
+  col = [];
   dragulaTags = {
     'Monday_8': [
       { size: 1, data: 'Sport', color: '' },
@@ -30,12 +31,23 @@ export class AppComponent {
   courseInTag = [];
 
   constructor() {
+    for (let i = 0; i <= 5; i++) {
+      this.col.push(this.colors[Math.floor((Math.random() * 90) + 1)]);
+      if (i === 5) {
+        this.dragulaTags = {
+          'Monday_8': [
+            { size: 1, data: 'Sport', color: this.col[1] },
+            { size: 2, data: 'English', color: this.col[2] },
+            { size: 4, data: 'Math', color: this.col[3] },
+            { size: 3, data: 'Society', color: this.col[4] },
+            { size: 5, data: 'Science', color: this.col[5] }
+          ]
+        };
+      }
+    }
+    console.log(this.dragulaTags);
     this.updateCourseInTag();
   }
-
-  // ngOnInit() {
-  //   const col = this.colors[Math.floor((Math.random() * 90) + 1)];
-  // }
 
   getHeaderTime(time: string) {
     return `${time}:00 - ${+time + 1}:00`;
