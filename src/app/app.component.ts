@@ -20,27 +20,27 @@ export class AppComponent {
     'goldenrod', 'darkgoldenrod', 'peru', 'chocolate', 'saddlebrown', 'sienna', 'brown'];
   dragulaTags = {
     'Monday_10': [
-      { size: 2, data: '88510459'},
+      { size: 2, data: '88510459#1'},
     ],
     'Monday_13': [
-      { size: 2, data: '88510459'},
+      { size: 2, data: '88510459#2'},
     ],
     'Tuesday_10':[
-      { size: 2, data: '88621159#1'},
-      { size: 2, data: '88621159#2'},
+      { size: 2, data: '88621159#3'},
+      { size: 2, data: '88621159#4'},
     ],
     'Tuesday_13': [
-      { size: 2, data: '88621159#1'},
-      { size: 2, data: '88621159#2'},
+      { size: 2, data: '88621159#5'},
+      { size: 2, data: '88621159#6'},
     ],
     'Wednesday_8': [
-      { size: 2, data: '88510059'}
+      { size: 2, data: '88510059#7'}
     ],
     'Wednesday_14': [
-      { size: 2, data: '88621159#1'},
-      { size: 2, data: '88621159#2'},
-      { size: 2, data: '88621159#3'},
-      { size: 2, data: '88621159#4'}
+      { size: 2, data: '88621159#8'},
+      { size: 2, data: '88621159#9'},
+      { size: 2, data: '88621159#10'},
+      { size: 2, data: '88621159#11'}
     ],
   };
   courseInTag = [];
